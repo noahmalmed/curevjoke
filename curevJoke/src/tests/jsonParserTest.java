@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import Model.ArticleInfo;
 import Model.JSONArticleParser;
+import Model.ParsedArticle;
 
 public class jsonParserTest {
 	
@@ -24,9 +25,12 @@ public class jsonParserTest {
 		InputStream in = new FileInputStream(new File(JSON_VALID_TEST_FILE));
 		
 		JSONArticleParser testParser = new JSONArticleParser();
-		List<ArticleInfo> foundArticles = testParser.getAllNYTArticleInfo(in);
+		List<ParsedArticle> foundArticles = testParser.getAllNYTArticleInfo(in);
 		assertTrue(foundArticles.size() == 5);
 		assertTrue(foundArticles.get(0).getTitle().equals("Local Stop: The Ironbound"));
+		assertTrue("  Ali Abdullah Saleh".equals(foundArticles.get(4).getPersons()[0]));
+
+		
 		
 	}
 	
@@ -35,7 +39,7 @@ public class jsonParserTest {
 		InputStream in = new FileInputStream(new File(JSON_EMPTY_TEST_FILE));
 		
 		JSONArticleParser testParser = new JSONArticleParser();
-		List<ArticleInfo> foundArticles = testParser.getAllNYTArticleInfo(in);
+		List<ParsedArticle> foundArticles = testParser.getAllNYTArticleInfo(in);
 		assertTrue(foundArticles.size() == 0);
 	}
 	
@@ -44,7 +48,7 @@ public class jsonParserTest {
 		InputStream in = new FileInputStream(new File(JSON_INVALID_TEST_FILE));
 		
 		JSONArticleParser testParser = new JSONArticleParser();
-		List<ArticleInfo> foundArticles = testParser.getAllNYTArticleInfo(in);
+		List<ParsedArticle> foundArticles = testParser.getAllNYTArticleInfo(in);
 		assertTrue(foundArticles.size() == 0);
 	}
 }

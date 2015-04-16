@@ -26,14 +26,15 @@ public class ArticleRetriever {
 	 * This function retrieves all recent articles from the NewYork Times AP
 	 * @return a list of the meta information from the articles
 	 */
-	public List<ArticleInfo> retrieveNYTHeadlines(){
+	public List<ParsedArticle> retrieveNYTHeadlines(){
 		String url = "http://api.nytimes.com/svc/news/v3/content";
 		String source = "all";
-		String section = "nytfrontpage";
+		String section = "world;nytfrontpage";
 		String devKey = "b59b3bfb57fc16741c8a89d92ad00ca6:18:67750048";
 		
 		String httpRequest = String.format("%s/%s/%s?api-key=%s", url, source, section, devKey);
 		
+		//TODO: For unit tests mock urlconnection(Powermock, Mockito)
 		try {
 			URLConnection connection = new URL(httpRequest).openConnection();
 			connection.setRequestProperty("Accept-Charset", "UTF-8");

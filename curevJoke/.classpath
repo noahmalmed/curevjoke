@@ -5,6 +5,8 @@
 	<classpathentry kind="lib" path="lib/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="lib/javax.json-api-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/javax.json-1.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/stanford-postagger.jar"/>
+	<classpathentry kind="lib" path="lib/miglayout-4.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

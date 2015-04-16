@@ -9,20 +9,20 @@ import java.util.List;
  *
  */
 public class ArticleParser {
-	private List<ArticleInfo> articles;
+	private List<ParsedArticle> articles;
 	
 	/**
 	 * Default constructor: 
 	 */
 	public ArticleParser(){
-		articles = new ArrayList<ArticleInfo>();
+		articles = new ArrayList<ParsedArticle>();
 	}
 	
 	/**
 	 * Add a single ArticleInfo object
 	 * @param headline
 	 */
-	public void addArticles(ArticleInfo headline){
+	public void addArticles(ParsedArticle headline){
 		articles.add(headline);
 	}
 	
@@ -30,7 +30,7 @@ public class ArticleParser {
 	 * Add a list of articles
 	 * @param articles
 	 */
-	public void addArticles(List<ArticleInfo> articles){
+	public void addArticles(List<ParsedArticle> articles){
 		this.articles.addAll(articles);
 	}
 	
@@ -38,7 +38,7 @@ public class ArticleParser {
 	 * receive a list of articles
 	 * @return
 	 */
-	public List<ArticleInfo> getHeadlines(){
+	public List<ParsedArticle> getHeadlines(){
 		return articles;
 	}
 }
