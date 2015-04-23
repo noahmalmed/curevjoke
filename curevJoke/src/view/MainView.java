@@ -1,63 +1,85 @@
 package view;
 
-import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import controller.OpenLinkInBrowserAction;
+import model.JokeBean;
+import model.MainModel;
 import net.miginfocom.swing.MigLayout;
 
+/**
+ * View for the main page of the application
+ * @author noahmalmed
+ *
+ */
 public class MainView extends JFrame{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JCheckBox nytButton;
-	private JCheckBox worldButton;
-	private JCheckBox nationalButton;
-	private JCheckBox frontPage;
-	private JButton continueButton;
-	private JButton quitButton;
 
-	public MainView(){
-		Font titleFont = new Font("Helvetica", Font.BOLD, 20);
-		setLayout(new MigLayout("","[][][]","[]20[][][][]1[]1[]10[]"));
-		setTitle("CurEvJoke, the current events joke generator!");
+	private static final long serialVersionUID = 1L;
+	private JLabel jokeField;
+	private JButton linkButton;
+	private JButton generateButton;
+	private MainModel model;
+	
+	public MainView(MainModel model){
 		
-		JLabel titleField = new JLabel("To begin please select a news source and the type of news you want");		
-		titleField.setFont(titleFont);
+		this.model = model;
+		setLayout(new MigLayout("","[grow][center][grow]","[grow][grow][grow][grow]"));
+		setTitle("CurEvJoke");
 		
-		add(titleField, "wrap");
+		JLabel titleField = new JLabel("Generate a Joke!");		
+		titleField.setFont(StaticFonts.TITLE_FONT);
+		add(titleField, "cell 1 0");
 		
-		JLabel sourceField = new JLabel("Select News Source");
-		add(sourceField, "wrap");
+		jokeField = new JLabel("Hello alsdjfklskdjflskdjf");
+		jokeField.setFont(StaticFonts.BODY_FONT);
+		jokeField.setVisible(false);
+		add(jokeField, "cell 1 1");
 		
-		nytButton = new JCheckBox("New York Times");
-		add(nytButton, "wrap");
+		linkButton = new JButton("Open Source Article");
+		linkButton.setFont(StaticFonts.BODY_FONT);
+		linkButton.setVisible(false);
+		add(linkButton, "cell 0 2 2 1");
 		
-		JLabel newsTypeField = new JLabel("Select News Type");
-		add(newsTypeField, "wrap");
-		
-		worldButton = new JCheckBox("World News");
-		add(worldButton, "wrap");
-		nationalButton = new JCheckBox("National News");
-		add(nationalButton, "wrap");
-		frontPage = new JCheckBox("Front Page");
-		add(frontPage, "wrap");
-		
-		quitButton = new JButton("Quit");
-		add(quitButton, "cell 0 7");
-		continueButton = new JButton("Continue");
-		add(continueButton, "cell 1 7");
-		
+		generateButton = new JButton("Generate New Joke");
+		generateButton.setFont(StaticFonts.BODY_FONT);
+		add(generateButton, "cell 1 3");
 		
 		
-		pack();
+		pack();		
 	}
 	
+	/**
+	 * Add the controller to the pressible buttons
+	 * @param controller
+	 */
+	public void addController(ActionListener controller){
+		generateButton.addActionListener(controller);
+	}
 	
-	
+	/**
+	 * Update the page to display a new generated joke
+	 */
+	public void update(){
+		try {
+			
+			JokeBean joke = model.getJoke();
+			jokeField.setText(joke.getJoke());
+			jokeField.setVisible(true);
+			
+			linkButton.setVisible(true);
+			for( ActionListener al : linkButton.getActionListeners() ) {
+		        linkButton.removeActionListener( al );
+		    }
+			linkButton.addActionListener(new OpenLinkInBrowserAction(joke.getArticleURL()));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

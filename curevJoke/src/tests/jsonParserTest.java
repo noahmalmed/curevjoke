@@ -8,11 +8,11 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 
-import org.junit.Test;
+import model.ArticleInfo;
+import model.JSONArticleParser;
+import model.ParsedArticle;
 
-import Model.ArticleInfo;
-import Model.JSONArticleParser;
-import Model.ParsedArticle;
+import org.junit.Test;
 
 public class jsonParserTest {
 	

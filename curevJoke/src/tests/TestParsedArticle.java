@@ -4,10 +4,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-import org.junit.Test;
+import model.ArticleInfo;
+import model.ParsedArticle;
 
-import Model.ArticleInfo;
-import Model.ParsedArticle;
+import org.junit.Test;
 
 public class TestParsedArticle {
 	

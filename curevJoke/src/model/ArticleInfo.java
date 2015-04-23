@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 /**
  * This is a data class used to pass information from the parsing and query sections

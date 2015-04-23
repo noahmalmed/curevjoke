@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +54,7 @@ public class ParsedArticle extends ArticleInfo{
 		sortWordsByTags(taggedSummary);		
 	}
 
-	/*
-	 * Sortings based off of information found at the following site:
-	 * http://www.comp.leeds.ac.uk/amalgam/tagsets/upenn.html
-	 */
+
 	/**
 	 * Function that sorts words based on their tags
 	 * Note:
