@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import edu.stanford.nlp.ling.TaggedWord;
 
@@ -93,6 +94,42 @@ public class ParsedArticle extends ArticleInfo{
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Get a random present Verb
+	 * @return
+	 */
+	public String getRandomPresentVerb(){
+		Random gen = new Random();
+		return presentVerbs.get(gen.nextInt(presentVerbs.size()));
+	}
+	
+	/**
+	 * Get a random past Verb
+	 * @return
+	 */
+	public String getRandomPastVerb(){
+		Random gen = new Random();
+		return pastVerbs.get(gen.nextInt(pastVerbs.size()));
+	}
+	
+	/**
+	 * Get a random noun
+	 * @return
+	 */
+	public String getRandomNoun(){
+		Random gen = new Random();
+		return nouns.get(gen.nextInt(nouns.size()));
+	}
+	
+	/**
+	 * Get a random adjective
+	 * @return
+	 */
+	public String getRandomAdjective(){
+		Random gen = new Random();
+		return adjectives.get(gen.nextInt(adjectives.size()));
 	}
 
 	public List<String> getNouns() {

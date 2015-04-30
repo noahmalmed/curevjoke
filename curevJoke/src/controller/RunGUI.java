@@ -11,9 +11,7 @@ import view.SetupView;
 public class RunGUI {
 	public static void main(String[] args){
 		SetupView setup = new SetupView();
-		MainController cont = new MainController(setup);
-		
+		MainController cont = new MainController(setup);		
 		setup.addController(cont);	
-
 	}
 }

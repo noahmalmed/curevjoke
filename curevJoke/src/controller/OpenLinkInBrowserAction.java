@@ -3,6 +3,7 @@ package controller;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -14,8 +15,13 @@ public class OpenLinkInBrowserAction implements ActionListener {
 	
 	private URL url;
 	
-	public OpenLinkInBrowserAction(URL url){
-		this.url = url;
+	public OpenLinkInBrowserAction(){
+		try {
+			this.url = new URL("www.google.com");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -29,7 +35,10 @@ public class OpenLinkInBrowserAction implements ActionListener {
 	            e.printStackTrace();
 	        }
 	    }
-		
+	}
+	
+	public void changeURL(URL url){
+		this.url = url;
 	}
 
 }

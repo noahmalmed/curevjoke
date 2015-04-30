@@ -7,10 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import controller.OpenLinkInBrowserAction;
 import model.JokeBean;
 import model.MainModel;
 import net.miginfocom.swing.MigLayout;
+import controller.OpenLinkInBrowserAction;
 
 /**
  * View for the main page of the application
@@ -25,8 +25,10 @@ public class MainView extends JFrame{
 	private JButton generateButton;
 	private MainModel model;
 	
+	private OpenLinkInBrowserAction linkListener;
+	
 	public MainView(MainModel model){
-		
+		linkListener = new OpenLinkInBrowserAction();
 		this.model = model;
 		setLayout(new MigLayout("","[grow][center][grow]","[grow][grow][grow][grow]"));
 		setTitle("CurEvJoke");
@@ -43,6 +45,7 @@ public class MainView extends JFrame{
 		linkButton = new JButton("Open Source Article");
 		linkButton.setFont(StaticFonts.BODY_FONT);
 		linkButton.setVisible(false);
+		linkButton.addActionListener(linkListener);
 		add(linkButton, "cell 0 2 2 1");
 		
 		generateButton = new JButton("Generate New Joke");
@@ -72,10 +75,7 @@ public class MainView extends JFrame{
 			jokeField.setVisible(true);
 			
 			linkButton.setVisible(true);
-			for( ActionListener al : linkButton.getActionListeners() ) {
-		        linkButton.removeActionListener( al );
-		    }
-			linkButton.addActionListener(new OpenLinkInBrowserAction(joke.getArticleURL()));
+			linkListener.changeURL(joke.getArticleURL());
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

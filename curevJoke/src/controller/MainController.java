@@ -28,10 +28,11 @@ public class MainController implements ActionListener {
 		switch(e.getActionCommand()){
 		
 			case "Quit": 
+				//TODO: make one line function
 				System.exit(0);
 				break;
 			case "Continue":
-				handleContinue();
+				handleContinuePress();
 				break;
 			case "Generate New Joke":
 				handleGenerateJoke();
@@ -43,7 +44,7 @@ public class MainController implements ActionListener {
 	/**
 	 * Method to handle moving from the setup view to the main view of the Application
 	 */
-	private void handleContinue(){
+	private void handleContinuePress(){
 		// Obtain checkbox information
 		boolean nytPressed = setupView.nytPressed();
 		boolean worldNewsPressed = setupView.worldNewsPressed();

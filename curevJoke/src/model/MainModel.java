@@ -3,6 +3,7 @@ package model;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Class that handles interfacing with the data structure and the interface
@@ -25,9 +26,28 @@ public class MainModel {
 		articles = ret.retrieveNYTHeadlines(worldNews, nationalNews, frontPage);
 	}
 	
-	//TODO: Actually implement this
+	/**
+	 * Method that returns a joke to the view
+	 * @return
+	 * @throws MalformedURLException
+	 */
 	public JokeBean getJoke() throws MalformedURLException{
-		return new JokeBean("This is a dumb joke", new URL("https://www.facebook.com/"));
+		if(articles.isEmpty()){
+			return new JokeBean("No Articles Retrieved" , new URL("http://www.sadmuffin.net/cherrybam/graphics/comments-sorry/sorry004.gif"));
+		} else {
+			JokeFormer jf = new JokeFormer();			
+			Random gen = new Random();
+			
+			String joke = "";
+			ParsedArticle article;
+			// Make sure that we get a joke from the generator
+			do{
+				article = articles.get(gen.nextInt(articles.size()));			
+				joke = jf.makeJoke(article);
+			}while (joke.equals(""));
+			
+			return new JokeBean(joke, new URL(article.url));
+		}
 	}
 
 }
